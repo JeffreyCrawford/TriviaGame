@@ -1,0 +1,11 @@
+.container {
+    text-align: center;
+    border-style: solid;
+}
+.question {
+    text-align: left;
+}
+.answer {
+    text-align: left;
+}
+
