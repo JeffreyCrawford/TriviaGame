@@ -14,6 +14,8 @@ function pullQuestionApply() {
     $(".answerDText").html(this.d);
 }
 
+
+
 var q0 = {
 	question: "",
 	a: "",
@@ -21,6 +23,8 @@ var q0 = {
 	c: "",
 	d: "",
 	answer: "",
+	pull: this.pullQuestionApply,
+	console: this.pullQuestionConsole,
 }
 var q1 = {
 	question: "In which country was the Gallipoli landing?",
@@ -29,7 +33,8 @@ var q1 = {
 	c: "Australia",
 	d: "Turkey",
 	answer: "d",
-    pullQuestionApply: this.pullQuestionApply,
+	pull: this.pullQuestionApply,
+	console: this.pullQuestionConsole,
 }  
 var q2 = {
 	question: "Which of the following was not a cause of WWI?",
@@ -38,7 +43,8 @@ var q2 = {
 	c: "Hundred Year war",
 	d: "Franco-Prussian war",
 	answer: "c",
-    pullQuestionApply: this.pullQuestionApply,
+	pull: this.pullQuestionApply,
+	console: this.pullQuestionConsole,
 }  
 var q3 = {
 	question: "Which countries were not in the Triple Entente in 1914?",
@@ -47,7 +53,8 @@ var q3 = {
 	c: "Italy",
 	d: "Belgium",
 	answer: "b",
-    pullQuestionApply: this.pullQuestionApply,
+	pull: this.pullQuestionApply,
+	console: this.pullQuestionConsole,
 }  
 var q4 = {
 	question: "All of these were major battles of WWI except:",
@@ -56,7 +63,8 @@ var q4 = {
 	c: "Battle of Antietam",
 	d: "Battle of Gallipoli",
 	answer: "c",
-    pullQuestionApply: this.pullQuestionApply,
+	pull: this.pullQuestionApply,
+	console: this.pullQuestionConsole,
 }  
 var q5 = {
 	question: "In which year did the battle of Verdun start?",
@@ -65,7 +73,8 @@ var q5 = {
 	c: "1916",
 	d: "1917",
 	answer: "c",
-    pullQuestionApply: this.pullQuestionApply,
+	pull: this.pullQuestionApply,
+	console: this.pullQuestionConsole,
 }  
 var q6 = {
 	question: "What is the maneuver warfare?",
@@ -74,7 +83,8 @@ var q6 = {
 	c: "It's a type of strategy to defeat enemy by remaining on his positions",
 	d: "It's a British soldiers squad",
 	answer: "a",
-    pullQuestionApply: this.pullQuestionApply,
+	pull: this.pullQuestionApply,
+	console: this.pullQuestionConsole,
 }  
 var q7 = {
 	question: "During which years did the Attrition warfare take place?",
@@ -83,7 +93,8 @@ var q7 = {
 	c: "Between 1914-1918",
 	d: "Between 1915-1918",
 	answer: "b",
-    pullQuestionApply: this.pullQuestionApply,
+	pull: this.pullQuestionApply,
+	console: this.pullQuestionConsole,
 }  
 var q8 = {
 	question: "Which country made the first declaration of war?",
@@ -92,7 +103,8 @@ var q8 = {
 	c: "Italy",
 	d: "Germany",
 	answer: "b",
-    pullQuestionApply: this.pullQuestionApply,
+	pull: this.pullQuestionApply,
+	console: this.pullQuestionConsole,
 }  
 var q9 = {
 	question: "Which German attack provoked Britain to go to war?",
@@ -101,7 +113,8 @@ var q9 = {
 	c: "The attack on Belgium",
 	d: "The attack on Russia",
 	answer: "c",
-    pullQuestionApply: this.pullQuestionApply,
+	pull: this.pullQuestionApply,
+	console: this.pullQuestionConsole,
 }  
 var q10 = {
 	question: "Which country joined the war on the side of the Allied Powers in 1916?",
@@ -110,7 +123,8 @@ var q10 = {
 	c: "Greece",
 	d: "USA",
 	answer: "a",
-    pullQuestionApply: this.pullQuestionApply,
+	pull: this.pullQuestionApply,
+	console: this.pullQuestionConsole,
 }  
 var q11 = {
 	question: "What country are the members of the Black Hand Society from?",
@@ -119,7 +133,8 @@ var q11 = {
 	c: "Czechoslovakia",
 	d: "Serbia",
 	answer: "d",
-    pullQuestionApply: this.pullQuestionApply,
+	pull: this.pullQuestionApply,
+	console: this.pullQuestionConsole,
 }  
 var q12 = {
 	question: "On what date did the United States declare war on Germany?",
@@ -128,7 +143,8 @@ var q12 = {
 	c: "November 4, 1917",
 	d: "USA did not declared the war on Germany.",
 	answer: "b",
-    pullQuestionApply: this.pullQuestionApply,
+	pull: this.pullQuestionApply,
+	console: this.pullQuestionConsole,
 }  
 var q13 = {
 	question: "Who was the commander of U.S. forces in Europe?",
@@ -137,7 +153,8 @@ var q13 = {
 	c: "Theodore Roosevelt",
 	d: "David Lloyd George",
 	answer: "a",
-    pullQuestionApply: this.pullQuestionApply,
+	pull: this.pullQuestionApply,
+	console: this.pullQuestionConsole,
 }  
 var q14 = {
 	question: "In what battle did the German Army first use Mustard gas as a weapon of war?",
@@ -146,7 +163,8 @@ var q14 = {
 	c: "Sommes",
 	d: "Passchendale",
 	answer: "a",
-    pullQuestionApply: this.pullQuestionApply,
+	pull: this.pullQuestionApply,
+	console: this.pullQuestionConsole,
 }  
 var q15 = {
 	question: "What was the area in between trenched called during WWI?",
@@ -155,7 +173,8 @@ var q15 = {
 	c: "No man's land",
 	d: "No tolerance land",
 	answer: "c",
-    pullQuestionApply: this.pullQuestionApply,
+	pull: this.pullQuestionApply,
+	console: this.pullQuestionConsole,
 }  
 var q16 = {
 	question: "What is a German U boat?",
@@ -164,7 +183,8 @@ var q16 = {
 	c: "Ocean troop carrier",
 	d: "Submarine",
 	answer: "d",
-    pullQuestionApply: this.pullQuestionApply,
+	pull: this.pullQuestionApply,
+	console: this.pullQuestionConsole,
 }  
 var q17 = {
 	question: "In 1918, the city of Paris suffered repeated attacks from German of",
@@ -173,7 +193,8 @@ var q17 = {
 	c: "Napalm",
 	d: "Long-range artillery",
 	answer: "d",
-    pullQuestionApply: this.pullQuestionApply,
+	pull: this.pullQuestionApply,
+	console: this.pullQuestionConsole,
 }  
 var q18 = {
 	question: "Who won WWI?",
@@ -182,7 +203,8 @@ var q18 = {
 	c: "Allies in 1917",
 	d: "Central power and Neutral power in 1918",
 	answer: "a",
-    pullQuestionApply: this.pullQuestionApply,
+	pull: this.pullQuestionApply,
+	console: this.pullQuestionConsole,
 }  
 var q19 = {
 	question: "When was the Armistice between Germany and France signed?",
@@ -191,7 +213,8 @@ var q19 = {
 	c: "11 November 1919",
 	d: "28 June 1919",
 	answer: "b",
-    pullQuestionApply: this.pullQuestionApply,
+	pull: this.pullQuestionApply,
+	console: this.pullQuestionConsole,
 }  
 var q20 = {
 	question: "When and where was the treaty between France and Germany signed?",
@@ -200,18 +223,38 @@ var q20 = {
 	c: "In 1918, in a Wagon at Versailles",
 	d: "In 1919, in the Hall of Mirrors at Versailles",
 	answer: "d",
-    pullQuestionApply: this.pullQuestionApply,
+	pull: this.pullQuestionApply,
+	console: this.pullQuestionConsole,
 }
 
-var questionArray = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20]
+var questionArray = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20];
+
+var clockRunning = false;
+
+var stopwatch = {
+	time: 0,
+	start: function() {
+		if(clockRunning === false) {
+			clockRunning = true;
+			interval = setInterval(stopwatch.count)
+		}
+	}
+}
+
+
+
 
 $(document).ready(function() {
 
+
+
+    $(".testbutton").on("click", function() {
+		
+		
+	})
+
+
     $(".execute").on("click", function() {
-    q3.pullQuestionApply();
+
     })
-
-
-
-
 })
