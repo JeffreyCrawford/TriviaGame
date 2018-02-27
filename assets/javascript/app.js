@@ -263,17 +263,29 @@ var clock = {
 
 }
 
+guessA = function() {
+	
+}
 
+guessB = function() {
+	
+}
 
+guessC = function() {
+	
+}
 
-
+guessD = function() {
+	
+}
 
 
 
 $(document).ready(function() {
 
-
+	/* TIMER BUTTONS */
     $(".start").on("click", function() {
+		q1.pull();
 		clock.start();
     })
 
@@ -282,8 +294,36 @@ $(document).ready(function() {
 	})
 
 	$(".reset").on("click", function() {
-		clock.reset();
+		q1.pull();
     })
+
+
+	/* ANSWER ONCLICK EVENTS */
+    $(".answerA").on("click", function() {
+		if (this.answer = "a") {
+			console.log("yes")
+		}
+		else {
+			console.log("no")
+		}
+	})
+
+    $(".answerBText").on("click", function() {
+		guessB();
+	})
+
+    $(".answerCText").on("click", function() {
+		guessC();
+	})
+
+    $(".answerDText").on("click", function() {
+		guessD();
+	})
+
+	$(".answerText").on("click", function() {
+		questionArray.shift().pull();
+	})
+
 
 
 

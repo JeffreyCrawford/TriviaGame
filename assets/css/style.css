@@ -1,9 +1,10 @@
 .container {
     text-align: center;
     border-style: solid;
+    display: inline-block;
 }
 .question {
-    text-align: left;
+    text-align: center;
 }
 .answer {
     text-align: left;
@@ -14,6 +15,14 @@
 }
 
 .timeRemainingHeader {
+    display: inline-block;
+}
+
+.answerHeader {
+    display: inline-block;
+}
+
+.answerText {
     display: inline-block;
 }
 
