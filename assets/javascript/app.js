@@ -231,15 +231,41 @@ var questionArray = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13,
 
 var clockRunning = false;
 
-var stopwatch = {
-	time: 0,
+var clock = {
+
+	time: 6,
+	
 	start: function() {
-		if(clockRunning === false) {
+		if(clockRunning === false && clock.time !== 0) {
+			interval = setInterval(clock.countdown, 1000)
 			clockRunning = true;
-			interval = setInterval(stopwatch.count)
 		}
-	}
+	},
+
+	stop: function() {
+		clearInterval(interval);
+		clockRunning = false;
+	},
+
+	countdown: function() {
+		clock.time--;
+		$(".timeRemaining").html(clock.time);
+		if (clock.time === 0) {
+		clock.stop()
+		alert("you lose");
+		}
+	},
+
+	reset: function() {
+		clock.time = 6;
+		$(".timeRemaining").html(clock.time);
+	},
+
 }
+
+
+
+
 
 
 
@@ -247,14 +273,18 @@ var stopwatch = {
 $(document).ready(function() {
 
 
+    $(".start").on("click", function() {
+		clock.start();
+    })
 
-    $(".testbutton").on("click", function() {
-		
-		
+    $(".stop").on("click", function() {
+		clock.stop();
 	})
 
-
-    $(".execute").on("click", function() {
-
+	$(".reset").on("click", function() {
+		clock.reset();
     })
+
+
+
 })

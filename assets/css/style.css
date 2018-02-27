@@ -9,3 +9,11 @@
     text-align: left;
 }
 
+.timeRemaining {
+    display: inline-block;
+}
+
+.timeRemainingHeader {
+    display: inline-block;
+}
+
