@@ -281,6 +281,8 @@ guessD = function() {
 
 
 
+
+
 $(document).ready(function() {
 
 	/* TIMER BUTTONS */
@@ -297,9 +299,13 @@ $(document).ready(function() {
 		q1.pull();
     })
 
+	$(".answerA").val("a");
+	$(".answerB").val("b");
+	$(".answerC").val("c");
+	$(".answerD").val("d");
 
 	/* ANSWER ONCLICK EVENTS */
-    $(".answerA").on("click", function() {
+	$(".answerA").on("click", function() {
 		if (this.answer = "a") {
 			console.log("yes")
 		}
@@ -308,21 +314,23 @@ $(document).ready(function() {
 		}
 	})
 
-    $(".answerBText").on("click", function() {
+
+    $(".answerB").on("click", function() {
+		console.log($(".answerB").val());
 		guessB();
 	})
 
-    $(".answerCText").on("click", function() {
+    $(".answerC").on("click", function() {
 		guessC();
 	})
 
-    $(".answerDText").on("click", function() {
+    $(".answerText").on("click", function() {
 		guessD();
 	})
 
-	$(".answerText").on("click", function() {
+/* 	$(".answerText").on("click", function() {
 		questionArray.shift().pull();
-	})
+	}) */
 
 
 
