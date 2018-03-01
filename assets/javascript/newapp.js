@@ -288,6 +288,13 @@ function loadQuestion() {
 	questionArray[0].pull();
 }
 
+function resetArrays() {
+    tempArray.reverse();
+    for (i = 0; i < tempArray.length; i++) {
+        questionArray.unshift(tempArray[i]);
+    };
+    tempArray = [];
+}
 
 $(document).ready(function() {
 
@@ -299,10 +306,13 @@ $(document).ready(function() {
 
     $(".stop").on("click", function() {
 		clock.stop();
+        resetArrays();
 	})
 
 	$(".reset").on("click", function() {
         console.log(questionArray[0].answer);
+        console.log(tempArray);
+        console.log(questionArray);
     })
 
 
