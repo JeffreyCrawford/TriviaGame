@@ -1,20 +1,3 @@
-function pullQuestionConsole() {
-    console.log(this.question);
-    console.log(this.a);
-    console.log(this.b);
-    console.log(this.c);
-    console.log(this.d);
-}
-
-function pullQuestionApply() {
-    $(".questionText").text(questionArray[0].question);
-    $(".answerAText").text(questionArray[0].a);
-    $(".answerBText").text(questionArray[0].b);
-    $(".answerCText").text(questionArray[0].c);
-    $(".answerDText").text(questionArray[0].d);
-}
-
-
 var q0 = {
 	question: "",
 	a: "",
@@ -226,7 +209,7 @@ var q20 = {
 	console: this.pullQuestionConsole,
 }
 
-var questionArray = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20];
+var questionArray = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20];
 
 var tempArray = [];
 
@@ -266,41 +249,52 @@ var clock = {
 
 }
 
+function pullQuestionConsole() {
+    console.log(this.question);
+    console.log(this.a);
+    console.log(this.b);
+    console.log(this.c);
+    console.log(this.d);
+}
 
+function pullQuestionApply() {
+    $(".questionText").text(questionArray[0].question);
+    $(".answerAText").text(questionArray[0].a);
+    $(".answerBText").text(questionArray[0].b);
+    $(".answerCText").text(questionArray[0].c);
+    $(".answerDText").text(questionArray[0].d);
+}
 
-var loadQuestion = function() {
-	questionArray.shift();
+function guessCorrect() {
+    console.log("CORRECT");
+}
+
+function guessIncorrect() {
+    console.log("INCORRECT");
+}
+
+function checkGuess(x) {
+    if(questionArray[0].answer == x) {
+        guessCorrect();
+    } 
+    else {
+        guessIncorrect();
+    }
+}
+
+function loadQuestion() {
+    tempArray.push(questionArray[0]);
+    questionArray.shift();
 	questionArray[0].pull();
-	tempArray.push(questionArray[0]);
 }
 
 
 $(document).ready(function() {
 
-	var guessCorrect = function() {
-		console.log("yes")
-	}
-
-	var guessIncorrect = function() {
-		console.log("No, try again")
-	}
-
-
-	var checkGuess = function(x) {
-		if (questionArray[0].answer == x) {
-			guessCorrect(x);
-		}
-		else {
-			guessIncorrect(x);
-		};
-	}
-
-
-
 	/* TIMER BUTTONS */
     $(".start").on("click", function() {
-		questionArray[0].pull();
 		clock.start();
+        loadQuestion();
     })
 
     $(".stop").on("click", function() {
@@ -308,33 +302,29 @@ $(document).ready(function() {
 	})
 
 	$(".reset").on("click", function() {
-		loadQuestion()
+        console.log(questionArray[0].answer);
     })
 
 
 
 	/* ANSWER ONCLICK EVENTS */
 	$(".answerA").on("click", function() {
-		checkGuess("a",);
+        checkGuess("a");
+        loadQuestion();
 	})
 
     $(".answerB").on("click", function() {
-		checkGuess("b");
+        checkGuess("b");
+        loadQuestion();
 	})
 
     $(".answerC").on("click", function() {
-		checkGuess("c");
+        checkGuess("c");
+        loadQuestion();
 	})
 
-    $(".answerText").on("click", function() {
-		checkGuess("d");
+    $(".answerD").on("click", function() {
+        checkGuess("d");
+        loadQuestion();
 	})
-
-	$(".answerText").on("click", function() {
-		
-	})
-
-
-
-
 })
