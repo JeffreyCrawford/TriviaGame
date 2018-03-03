@@ -1,3 +1,10 @@
+body {
+    background-image: url(https://cdn.images.express.co.uk/img/dynamic/130/590x/ritish-soldiers-lined-up-in-a-narrow-trench-during-World-War-I-516148.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+}
+
 .container {
     text-align: center;
     border-style: solid; 
