@@ -269,22 +269,50 @@ function pullQuestionApply() {
     $(".answerDText").text(questionArray[0].d);
 }
 
+var  fetchCorrectDiv = function() {
+	if (questionArray[0].answer === "a") {
+		return $(".answerA")
+	}
+	else if (questionArray[0].answer === "b") {
+		return $(".answerB")
+	}
+	else if (questionArray[0].answer === "c") {
+		return $(".answerC")
+	}
+	else if (questionArray[0].answer === "d") {
+		return $(".answerD")
+	}
+}	
+
+
+
+
+
+
 function loadQuestion() {
     tempArray.push(questionArray[0]);
     questionArray.shift();
 	questionArray[0].pull();
+	$(".answerText").css("color", "black")
+	$(".answer").css("color", "black");
+	$(".answerHeader").css("color", "black");
 	clock.reset();
 	clock.start();
 }
 
 function correctScreen() {
 	$(".questionText").text("Correct!");
+	$(event.currentTarget).children().css("color", "green");
+	$(event.currentTarget).children().css("color", "green");
+
 
 }
 
 function incorrectScreen() {
 	$(".questionText").text("Wrong!");
-	
+	$(event.currentTarget).children().css("color", "red");
+	$(event.currentTarget).children().css("color", "red");
+
 }
 
 function guessCorrect() {
@@ -302,7 +330,8 @@ function guessIncorrect() {
 function checkGuess(x) {
 	clock.stop();
     if(questionArray[0].answer == x) {
-        guessCorrect();
+		guessCorrect();
+		
     } 
     else {
         guessIncorrect();
@@ -320,27 +349,16 @@ function resetArrays() {
     tempArray = [];
 }
 
+
+
+
+
+
+
+
+
+
 $(document).ready(function() {
-
-	/* TIMER BUTTONS */
-    $(".start").on("click", function() {
-		clock.start();
-        loadQuestion();
-    })
-
-    $(".stop").on("click", function() {
-		clock.stop();
-        resetArrays();
-	})
-
-	$(".reset").on("click", function() {
-        console.log(questionArray[0].answer);
-        console.log(tempArray);
-		console.log(questionArray);
-		loadQuestion();
-    })
-
-
 
 	/* ANSWER ONCLICK EVENTS */
 	$(".answerA").on("click", function() {
@@ -357,5 +375,25 @@ $(document).ready(function() {
 
     $(".answerD").on("click", function() {
         checkGuess("d");
+	})
+
+
+
+	/* TIMER BUTTONS */
+	$(".start").on("click", function() {
+		clock.start();
+		loadQuestion();
+	})
+
+	$(".stop").on("click", function() {
+		clock.stop();
+		resetArrays();
+	})
+
+	$(".reset").on("click", function() {
+		console.log(questionArray[0].answer);
+		console.log(tempArray);
+		console.log(questionArray);
+		loadQuestion();
 	})
 })
