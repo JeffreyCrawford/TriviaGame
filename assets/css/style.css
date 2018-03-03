@@ -1,13 +1,17 @@
+
 .container {
     text-align: center;
-    border-style: solid;
-    display: inline-block;
+    border-style: solid; 
 }
 .question {
     text-align: center;
 }
 .answer {
     text-align: left;
+}
+
+.answerBlock {
+    text-align: center;
 }
 
 .timeRemaining {
@@ -24,5 +28,19 @@
 
 .answerText {
     display: inline-block;
+}
+
+.correctText {
+    color: green;
+    font-weight: bold;
+}
+
+.incorrectText {
+    color: red;
+    font-weight: bold;
+}
+
+.resultImage {
+    width: 90%;
 }
 

@@ -209,6 +209,10 @@ var q20 = {
 	console: this.pullQuestionConsole,
 }
 
+var correctAnswers = 0;
+
+var incorrectAnswers = 0;
+
 var questionArray = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20];
 
 var tempArray = [];
@@ -217,7 +221,7 @@ var clockRunning = false;
 
 var clock = {
 
-	time: 100,
+	time: 20,
 	
 	start: function() {
 		if(clockRunning === false && clock.time !== 0) {
@@ -243,7 +247,7 @@ var clock = {
 	},
 
 	reset: function() {
-		clock.time = 100;
+		clock.time = 20;
 		$(".timeRemaining").text(clock.time);
 	},
 
@@ -265,28 +269,48 @@ function pullQuestionApply() {
     $(".answerDText").text(questionArray[0].d);
 }
 
+function loadQuestion() {
+    tempArray.push(questionArray[0]);
+    questionArray.shift();
+	questionArray[0].pull();
+	clock.reset();
+	clock.start();
+}
+
+function correctScreen() {
+	$(".questionText").text("Correct!");
+
+}
+
+function incorrectScreen() {
+	$(".questionText").text("Wrong!");
+	
+}
+
 function guessCorrect() {
-    console.log("CORRECT");
+	correctAnswers++;
+	correctScreen();
 }
 
 function guessIncorrect() {
-    console.log("INCORRECT");
+	incorrectAnswers++;
+	incorrectScreen();
+	
+
 }
 
 function checkGuess(x) {
+	clock.stop();
     if(questionArray[0].answer == x) {
         guessCorrect();
     } 
     else {
         guessIncorrect();
-    }
+	}
+	setTimeout(loadQuestion, 1000);
 }
 
-function loadQuestion() {
-    tempArray.push(questionArray[0]);
-    questionArray.shift();
-	questionArray[0].pull();
-}
+
 
 function resetArrays() {
     tempArray.reverse();
@@ -312,7 +336,8 @@ $(document).ready(function() {
 	$(".reset").on("click", function() {
         console.log(questionArray[0].answer);
         console.log(tempArray);
-        console.log(questionArray);
+		console.log(questionArray);
+		loadQuestion();
     })
 
 
@@ -320,21 +345,17 @@ $(document).ready(function() {
 	/* ANSWER ONCLICK EVENTS */
 	$(".answerA").on("click", function() {
         checkGuess("a");
-        loadQuestion();
 	})
 
     $(".answerB").on("click", function() {
         checkGuess("b");
-        loadQuestion();
 	})
 
     $(".answerC").on("click", function() {
         checkGuess("c");
-        loadQuestion();
 	})
 
     $(".answerD").on("click", function() {
         checkGuess("d");
-        loadQuestion();
 	})
 })
