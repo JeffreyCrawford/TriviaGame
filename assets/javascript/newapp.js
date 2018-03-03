@@ -213,6 +213,8 @@ var correctAnswers = 0;
 
 var incorrectAnswers = 0;
 
+var missedAnswers = 0;
+
 var questionArray = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20];
 
 var tempArray = [];
@@ -280,19 +282,24 @@ function populateDivs() {
 
 
 function loadQuestion() {
-	/* PUSH QUESTION FORMATTED DIVS */
-	populateDivs();
-	/* QUESTION ARRAY/DISPLAY MANAGEMENT */
-    tempArray.push(questionArray[0]);
-    questionArray.shift();
-	questionArray[0].pull();
-	/* RESET COLORS */
-	$(".answerText").css("color", "black")
-	$(".answer").css("color", "black");
-	$(".answerHeader").css("color", "black");
-	/* RESET/START CLOCK */
-	clock.reset();
-	clock.start();
+	if (questionArray.length > 1) {	
+		/* PUSH QUESTION FORMATTED DIVS */
+		populateDivs();
+		/* QUESTION ARRAY/DISPLAY MANAGEMENT */
+		tempArray.push(questionArray[0]);
+		questionArray.shift();
+		questionArray[0].pull();
+		/* RESET COLORS */
+		$(".answerText").css("color", "black")
+		$(".answer").css("color", "black");
+		$(".answerHeader").css("color", "black");
+		/* RESET/START CLOCK */
+		clock.reset();
+		clock.start();
+	}
+	else {
+		gameOverScreen();
+	}
 }
 
 /* EVENT SCREENS */
@@ -306,7 +313,7 @@ function correctScreen() {
 	$(event.currentTarget).children().css("color", "green");
 }
 function incorrectScreen() {
-	$(".questionText").text("Wrong! ");
+	$(".questionText").text("Wrong!");
 	$(event.currentTarget).children().css("color", "red");
 	$(event.currentTarget).children().css("color", "red");
 	var answerCode = questionArray[0].answer.toUpperCase();
@@ -318,7 +325,11 @@ function timesUpScreen() {
 	$("." + "answer" + answerCode).children().css("color", "green");
 }
 function gameOverScreen() {
-
+	$(".questionText").text("Game Over!");
+	$(".answerA").empty();
+	$(".answerB").text("Correct Guesses: " + correctAnswers);
+	$(".answerC").text("Wrong Guesses: " + incorrectAnswers);
+	$(".answerD").text("Missed Guesses: " + missedAnswers);
 }
 
 
@@ -335,9 +346,9 @@ function guessIncorrect() {
 	incorrectScreen();
 }
 function timesUp() {
-	incorrectAnswers++;
+	missedAnswers++;
 	timesUpScreen();
-	setTimeout(loadQuestion, 5000);
+	setTimeout(loadQuestion, 1000);
 }
 
 
@@ -350,7 +361,7 @@ function checkGuess(x) {
 		else {
 			guessIncorrect();
 		}
-		setTimeout(loadQuestion, 5000);
+		setTimeout(loadQuestion, 1000);
 	}
 	else {}
 }
@@ -365,8 +376,9 @@ function resetArrays() {
     tempArray = [];
 }
 function resetScores() {
-	correctGuesses = 0;
-	incorrectGuesses = 0;
+	correctAnswers = 0;
+	incorrectAnswers = 0;
+	missedAnswers = 0;
 }
 function resetGame() {
 	resetArrays();
@@ -412,12 +424,12 @@ $(document).ready(function() {
 	})
 
 	$(".stop").on("click", function() {
-		clock.stop();
+		gameOverScreen();
 	})
 
 	$(".reset").on("click", function() {
 		resetGame();
-		
-
+		loadQuestion();
 	})
+
 })
