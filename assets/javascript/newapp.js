@@ -221,7 +221,7 @@ var clockRunning = false;
 
 var clock = {
 
-	time: 20,
+	time: 7,
 	
 	start: function() {
 		if(clockRunning === false && clock.time !== 0) {
@@ -241,13 +241,13 @@ var clock = {
 		clock.time--;
 		$(".timeRemaining").text(clock.time);
 		if (clock.time === 0) {
-		clock.stop()
-		alert("you lose");
+		clock.stop();
+		timesUp();
 		}
 	},
 
 	reset: function() {
-		clock.time = 20;
+		clock.time = 7;
 		$(".timeRemaining").text(clock.time);
 	},
 
@@ -269,78 +269,94 @@ function pullQuestionApply() {
     $(".answerDText").text(questionArray[0].d);
 }
 
-var  fetchCorrectDiv = function() {
-	if (questionArray[0].answer === "a") {
-		return $(".answerA")
-	}
-	else if (questionArray[0].answer === "b") {
-		return $(".answerB")
-	}
-	else if (questionArray[0].answer === "c") {
-		return $(".answerC")
-	}
-	else if (questionArray[0].answer === "d") {
-		return $(".answerD")
-	}
-}	
-
-
-
-
+function populateDivs() {
+	$(".timeHeader").html("<h3 class='timeRemainingHeader'>Time Remaining:</h3>  <h3 class='timeRemaining'></h3> <br>");
+	$(".question").html("<h3 class='questionText'></h3>");
+	$(".answerA").html("<h3 class='answerHeader answerHeaderA'>A: </h3> <h3 class='answerText answerAText'></h3> <br>");
+	$(".answerB").html("<h3 class='answerHeader answerHeaderB'>B: </h3> <h3 class='answerText answerBText'></h3> <br>");
+	$(".answerC").html("<h3 class='answerHeader answerHeaderC'>C: </h3> <h3 class='answerText answerCText'></h3> <br>");
+	$(".answerD").html("<h3 class='answerHeader answerHeaderD'>D: </h3> <h3 class='answerText answerDText'></h3> <br>");
+}
 
 
 function loadQuestion() {
+	/* PUSH QUESTION FORMATTED DIVS */
+	populateDivs();
+	/* QUESTION ARRAY/DISPLAY MANAGEMENT */
     tempArray.push(questionArray[0]);
     questionArray.shift();
 	questionArray[0].pull();
+	/* RESET COLORS */
 	$(".answerText").css("color", "black")
 	$(".answer").css("color", "black");
 	$(".answerHeader").css("color", "black");
+	/* RESET/START CLOCK */
 	clock.reset();
 	clock.start();
 }
 
+/* EVENT SCREENS */
+
+function gameStartScreen() {
+	$(".answerA").html("<h3>Welcome to Great War Trivia! Click Start to Begin!</h3>")
+}
 function correctScreen() {
 	$(".questionText").text("Correct!");
 	$(event.currentTarget).children().css("color", "green");
 	$(event.currentTarget).children().css("color", "green");
-
-
 }
-
 function incorrectScreen() {
-	$(".questionText").text("Wrong!");
+	$(".questionText").text("Wrong! ");
 	$(event.currentTarget).children().css("color", "red");
 	$(event.currentTarget).children().css("color", "red");
+	var answerCode = questionArray[0].answer.toUpperCase();
+	$("." + "answer" + answerCode).children().css("color", "green");
+}
+function timesUpScreen() {
+	$(".questionText").text("Time's Up!");
+	var answerCode = questionArray[0].answer.toUpperCase();
+	$("." + "answer" + answerCode).children().css("color", "green");
+}
+function gameOverScreen() {
 
 }
 
+
+
+
+
+/* EVENT/GUESS FUNCTIONS */
 function guessCorrect() {
 	correctAnswers++;
 	correctScreen();
 }
-
 function guessIncorrect() {
 	incorrectAnswers++;
 	incorrectScreen();
-	
-
 }
+function timesUp() {
+	incorrectAnswers++;
+	timesUpScreen();
+	setTimeout(loadQuestion, 5000);
+}
+
 
 function checkGuess(x) {
-	clock.stop();
-    if(questionArray[0].answer == x) {
-		guessCorrect();
-		
-    } 
-    else {
-        guessIncorrect();
+	if (clockRunning === true) {
+		clock.stop();
+		if(questionArray[0].answer == x) {
+			guessCorrect();
+		} 
+		else {
+			guessIncorrect();
+		}
+		setTimeout(loadQuestion, 5000);
 	}
-	setTimeout(loadQuestion, 1000);
+	else {}
 }
 
 
-
+/* RESETS */
 function resetArrays() {
     tempArray.reverse();
     for (i = 0; i < tempArray.length; i++) {
@@ -348,7 +364,15 @@ function resetArrays() {
     };
     tempArray = [];
 }
-
+function resetScores() {
+	correctGuesses = 0;
+	incorrectGuesses = 0;
+}
+function resetGame() {
+	resetArrays();
+	resetScores();
+	clock.reset();
+}
 
 
 
@@ -360,9 +384,11 @@ function resetArrays() {
 
 $(document).ready(function() {
 
+	gameStartScreen();
+
 	/* ANSWER ONCLICK EVENTS */
-	$(".answerA").on("click", function() {
-        checkGuess("a");
+	$(".answerA").on("click", function() { 
+		checkGuess("a");
 	})
 
     $(".answerB").on("click", function() {
@@ -387,13 +413,11 @@ $(document).ready(function() {
 
 	$(".stop").on("click", function() {
 		clock.stop();
-		resetArrays();
 	})
 
 	$(".reset").on("click", function() {
-		console.log(questionArray[0].answer);
-		console.log(tempArray);
-		console.log(questionArray);
-		loadQuestion();
+		resetGame();
+		
+
 	})
 })
