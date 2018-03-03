@@ -1,14 +1,34 @@
 .container {
     text-align: center;
     border-style: solid; 
+    background: grey;
+    font-family: 'Allerta Stencil', sans-serif;
 }
 
 .question {
     text-align: center;
 }
 
+.questionText {
+    font-size: 30px;
+    border-color: black;
+    border-style: solid;
+    padding: 5px;
+    background-color: lightgrey;
+}
+
 .answer {
     text-align: left;
+    border-color: black;
+    border-style: solid;
+    padding: 5px;
+    background-color: lightgrey;
+}
+.answer:hover {
+    background-color: white;
+    border-style: solid;
+    border-color: black;
+    background-color: white;
 }
 
 .answerBlock {
@@ -30,13 +50,21 @@
     font-weight: bold;
 }
 
-.resultImage {
-    width: 90%;
+.startOver {
+    font-weight: bold;
+    text-align: center;
+    font-size: 36px;
 }
 
-.answer:hover {
-    background-color: grey;
+.startButton {
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
     border-style: solid;
     border-color: black;
+    padding: 5px;
+    background-color: lightgrey;
 }
-
+.startButton:hover {
+    background-color: white;
+}

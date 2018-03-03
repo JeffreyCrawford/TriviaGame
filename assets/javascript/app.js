@@ -55,10 +55,10 @@ var q5 = {
 }  
 var q6 = {
 	question: "What is the maneuver warfare?",
-	a: "It's a type of strategy to defeat enemy by movement",
+	a: "A strategy to defeat the enemy by movement",
 	b: "It's name of a treaty",
-	c: "It's a type of strategy to defeat enemy by remaining on his positions",
-	d: "It's a British soldiers squad",
+	c: "A strategy to defeat the enemy by remaining on his positions",
+	d: "A British soldiers squad",
 	answer: "a",
 	pull: this.pullQuestionApply,
 }  
@@ -154,7 +154,7 @@ var q16 = {
 }  
 var q17 = {
 	question: "In 1918, the city of Paris suffered repeated attacks from German of",
-	a: "Poison Gaz",
+	a: "Poison Gas",
 	b: "Tanks",
 	c: "Napalm",
 	d: "Long-range artillery",
@@ -204,7 +204,7 @@ var tempArray = [];
 var clockRunning = false;
 var clock = {
 
-	time: 20,
+	time: 15,
 	start: function() {
 		if(clockRunning === false && clock.time !== 0) {
 			interval = setInterval(clock.countdown, 1000)
@@ -227,7 +227,7 @@ var clock = {
 	},
 	reset: function() {
 		clock.stop();
-		clock.time = 20;
+		clock.time = 15;
 		$(".timeRemaining").text(clock.time);
 	},
 }
@@ -246,10 +246,10 @@ function populateDivs() {
 	/* LOAD THE NECESSARY DIVS ONTO THE PAGE */
 	$(".timeHeader").html("<h3 class='timeRemainingHeader'>Time Remaining:</h3>  <h3 class='timeRemaining'></h3> <br>");
 	$(".question").html("<h3 class='questionText'></h3>");
-	$(".answerA").html("<h3 class='answerHeader'>A: </h3> <h3 class='answerText answerAText'></h3> <br>");
-	$(".answerB").html("<h3 class='answerHeader'>B: </h3> <h3 class='answerText answerBText'></h3> <br>");
-	$(".answerC").html("<h3 class='answerHeader'>C: </h3> <h3 class='answerText answerCText'></h3> <br>");
-	$(".answerD").html("<h3 class='answerHeader'>D: </h3> <h3 class='answerText answerDText'></h3> <br>");
+	$(".A").html("<div class='col answer answerA'><h3 class='answerHeader'>A: </h3> <h3 class='answerText answerAText'></h3> <br></div>");
+	$(".B").html("<div class='col answer answerB'><h3 class='answerHeader'>B: </h3> <h3 class='answerText answerBText'></h3> <br></div>");
+	$(".C").html("<div class='col answer answerC'><h3 class='answerHeader'>C: </h3> <h3 class='answerText answerCText'></h3> <br></div>");
+	$(".D").html("<div class='col answer answerD'><h3 class='answerHeader'>D: </h3> <h3 class='answerText answerDText'></h3> <br></div>");
 }
 function loadQuestion() {
 	/* IF QUESTIONS REMAIN: LOAD NEXT QUESTION, ELSE: SHOW GAME OVER SCREEN  */
@@ -266,7 +266,7 @@ function loadQuestion() {
 		/* RESET COLORS */
 		$(".answerText").css("color", "black")
 		$(".answer").css("color", "black");
-		$(".answerHeader").css("color", "black");
+		$("questionText").css("color", "black");
 
 		/* RESET/START CLOCK */
 		clock.reset();
@@ -280,17 +280,21 @@ function loadQuestion() {
 
 /* EVENT SCREENS */
 function gameStartScreen() {
-	$(".answerA").html("<h3>Welcome to Great War Trivia! Click Here to Begin!</h3>")
+	$(".timeHeader").html("<h3 class='startButton'>Welcome to Great War Trivia! Click Here to Begin!</h3>");
 }
 function correctScreen() {
 	/* COLOR CHOSEN/CORRECT ANSWER */
 	$(".questionText").text("Correct!");
-	$(event.currentTarget).children().css("color", "green");
+	$(".questionText").css("color", "green");
+	$(event.target).children().css("color", "green");
+	$(event.target).parent().children().css("color", "green");
 }
 function incorrectScreen() {
 	/* SHOW TEXT "WRONG" AND COLOR CHOSEN ANSWER */
 	$(".questionText").text("Wrong!");
-	$(event.currentTarget).children().css("color", "red");
+	$(".questionText").css("color", "red");
+	$(event.target).children().css("color", "red");
+	$(event.target).parent().children().css("color", "red");
 
 	/* COLOR CORRECT ANSWER */
 	var answerCode = questionArray[0].answer.toUpperCase();
@@ -299,21 +303,25 @@ function incorrectScreen() {
 function timesUpScreen() {
 	/* SHOW TEXT "TIME'S UP" AND COLOR CORRECT ANSWER */
 	$(".questionText").text("Time's Up!");
+	$(".questionText").css("color", "red");
 	var answerCode = questionArray[0].answer.toUpperCase();
 	$("." + "answer" + answerCode).children().css("color", "green");
 }
 function gameOverScreen() {
+	clock.stop();
 	/* SHOW TEXT "GAME OVER" AND NUMBER OF CORRECT/WRONG/MISSED */
 	$(".questionText").text("Game Over!");
-	$(".answerA").empty();
-	$(".answerB").text("Correct Guesses: " + correctAnswers);
-	$(".answerC").text("Wrong Guesses: " + incorrectAnswers);
-	$(".answerD").text("Missed Guesses: " + missedAnswers);
+	$(".answerA").text("Correct Guesses: " + correctAnswers);
+	$(".answerB").text("Wrong Guesses: " + incorrectAnswers);
+	$(".answerC").text("Missed Guesses: " + missedAnswers);
+	$(".answerD").text("Start Over?");
 
 	/* FORMAT COUNTS */
+	$(".answerA").addClass("h3")
 	$(".answerB").addClass("h3")
 	$(".answerC").addClass("h3")
-	$(".answerD").addClass("h3")
+	$(".answerD").addClass("h3 startOver")
+
 }
 
 
@@ -332,7 +340,7 @@ function timesUp() {
 	/* INCREMENT MISSED ANSWERS VARIABLE AND SHOW TIME'S UP SCREEN, THEN LOAD NEXT QUESTION */
 	missedAnswers++;
 	timesUpScreen();
-	setTimeout(loadQuestion, 1000);
+	setTimeout(loadQuestion, 7000);
 }
 function checkGuess(x) {
 	/* IF A QUESTION IS NOT ACTIVE, DO NOT ACCEPT INPUTS */
@@ -346,7 +354,7 @@ function checkGuess(x) {
 			guessIncorrect();
 		}
 		/* WAIT AND THEN LOAD THE NEXT QUESTION */
-		setTimeout(loadQuestion, 1000);
+		setTimeout(loadQuestion, 3000);
 	}
 	else {}
 }
@@ -381,37 +389,34 @@ $(document).ready(function() {
 
 
 	/* ANSWER ONCLICK EVENTS */
-	$(".answerA").on("click", function() { 
-		/* IF THE GAME HAS NOT BEGUN, USE THIS DIV AS A START BUTTON, ELSE CHECK GUESS AS NORMAL */
+	$(".A").on("click", function() { 
+			checkGuess("a");
+	})
+    $(".B").on("click", function() {
+        checkGuess("b");
+	})
+    $(".C").on("click", function() {
+        checkGuess("c");
+	})
+    $(".D").on("click", function() {
+		/* IF THE GAME IS OVER, USE THIS AS A RESTART BUTTON, ELSE CHECK GUESS AS NORMAL */
+		if (tempArray.length === 20) {
+			$(".answerD").removeClass("startOver");
+			$(".answerD").addClass("answer");
+			resetGame();
+			loadQuestion();
+		}
+		else {
+			checkGuess("d");
+		}
+	})
+	/* IF THE GAME HAS NOT BEGUN, USE THIS DIV AS A START BUTTON */
+	$(".timeHeader").on("click", function() {
 		if (tempArray.length === 0) {
 			clock.start();
 			loadQuestion();
 		}
-		else {
-		checkGuess("a");
-		}
-	})
-    $(".answerB").on("click", function() {
-        checkGuess("b");
-	})
-    $(".answerC").on("click", function() {
-        checkGuess("c");
-	})
-    $(".answerD").on("click", function() {
-        checkGuess("d");
-	})
+		else {}
 
-
-	/* TIMER BUTTONS */
-	$(".start").on("click", function() {
-		clock.start();
-		loadQuestion();
-	})
-	$(".stop").on("click", function() {
-		gameOverScreen();
-	})
-	$(".reset").on("click", function() {
-		resetGame();
-		loadQuestion();
 	})
 })
