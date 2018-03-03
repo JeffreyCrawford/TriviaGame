@@ -47,5 +47,7 @@
 
 .answer:hover {
     background-color: grey;
+    border-style: solid;
+    border-color: black;
 }
 
