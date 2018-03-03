@@ -1,11 +1,12 @@
-
 .container {
     text-align: center;
     border-style: solid; 
 }
+
 .question {
     text-align: center;
 }
+
 .answer {
     text-align: left;
 }
@@ -15,19 +16,7 @@
     margin: 20px;
 }
 
-.timeRemaining {
-    display: inline-block;
-}
-
-.timeRemainingHeader {
-    display: inline-block;
-}
-
-.answerHeader {
-    display: inline-block;
-}
-
-.answerText {
+.timeRemaining, .timeRemainingHeader, .answerHeader, .answerText {
     display: inline-block;
 }
 
